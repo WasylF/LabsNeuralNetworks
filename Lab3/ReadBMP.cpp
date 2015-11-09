@@ -155,11 +155,3 @@ int ReadBMP:: read_s32(FILE *fp)
 
     return ((int)(((((b3 << 8) | b2) << 8) | b1) << 8) | b0);
 }
-
-
-int main()
-{
-    ReadBMP r;
-    r.readBlackWhiteBMP("1.bmp");
-    return 0;
-}
