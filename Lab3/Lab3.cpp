@@ -80,5 +80,43 @@ int main()
     cout<<fixed;
     cout<<setprecision(9);
 
+    vi v0,v1;
+    v0= ReadBMP::readBlackWhiteBMP("0.bmp");
+    v1= ReadBMP::readBlackWhiteBMP("1.bmp");
+    Nerual nerual(max(v0.size(),v1.size()),0.55);
+
+    v0.insert(v0.begin(),1);
+    v1.insert(v1.begin(),1);
+
+    bool finished= 0;
+    int numb= 0;
+    while (!finished)
+    {
+        numb++;
+        finished= nerual.learn(v0,0);
+        finished&= nerual.learn(v1,1);
+        if (numb%1000==0)
+        {
+            cout<<numb<<endl;
+            nerual.printW();
+            cout<<endl;
+        }
+    }
+    cout<<"finished: "<<numb<<endl;
+    cout<<endl<<endl;
+
+    cout<<"enterFileName: ";
+    cout.flush();
+    string fileName;
+    while (cin>>fileName)
+    {
+        if (fileName=="exit") break;
+        vi v= ReadBMP::readBlackWhiteBMP(fileName);
+        v.insert(v.begin(),1);
+        cout<<"answer: "<<nerual.classify(v)<<endl;
+        cout<<"enterFileName: ";
+        cout.flush();
+    }
+
     return 0;
 }
