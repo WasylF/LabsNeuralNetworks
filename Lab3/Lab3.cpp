@@ -81,8 +81,8 @@ int main()
     cout<<setprecision(9);
 
     vi v0,v1;
-    v0= ReadBMP::readBlackWhiteBMP("0.bmp");
-    v1= ReadBMP::readBlackWhiteBMP("1.bmp");
+    v0= ReadBMP::readBlackWhiteBMP("q.bmp");
+    v1= ReadBMP::readBlackWhiteBMP("m.bmp");
     Nerual nerual(max(v0.size(),v1.size()),0.55);
 
     v0.insert(v0.begin(),1);
